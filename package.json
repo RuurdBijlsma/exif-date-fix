@@ -14,7 +14,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "ffmetadata": "^1.7.0",
     "get-exif": "^1.0.3",
     "mime-types": "^2.1.30",
     "modify-exif": "^0.0.1",
