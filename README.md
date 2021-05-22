@@ -6,7 +6,7 @@ i.e. `IMG_20210401_193452.jpg`).
 ## Usage
 
 1. `npm i -g ruurdbijlsma/exif-date-fix`
-2. `exif-date-fix --rename ./`
+2. `fix-exif --rename ./`
 
 ### Notes
 
