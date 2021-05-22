@@ -91,5 +91,7 @@ export default async function fix() {
         }
     }
 
-    console.log(`Fixed [${fixedN} / ${totalN}]`)
+    console.log(`Fixed [${fixedN} / ${totalN}] files, output dir: ${path.resolve('./fixed')}`)
 }
+
+fix().then();
