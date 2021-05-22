@@ -1,6 +1,6 @@
 {
   "name": "file-renamer",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "",
   "main": "index.js",
   "bin": {
@@ -14,7 +14,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ffmetadata": "^1.7.0",
     "get-exif": "^1.0.3",
-    "modify-exif": "^0.0.1"
+    "mime-types": "^2.1.30",
+    "modify-exif": "^0.0.1",
+    "utimes": "^4.0.4"
   }
 }
