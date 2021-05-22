@@ -1,6 +1,6 @@
 {
   "name": "file-renamer",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "",
   "main": "index.js",
   "bin": {
@@ -14,10 +14,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "commander": "^7.2.0",
     "get-exif": "^1.0.3",
-    "modify-exif": "^0.0.1",
-    "piexifjs": "*",
-    "prompt": "^1.1.0"
+    "modify-exif": "^0.0.1"
   }
 }
