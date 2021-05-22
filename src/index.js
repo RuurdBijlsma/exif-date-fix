@@ -43,11 +43,6 @@ export default async function fix() {
         console.log("Can't parse", file);
     }
 
-    try {
-        await fs.promises.mkdir('./fixed');
-    } catch (e) {
-    }
-
     let fixedN = 0;
     let totalN = files.length;
 
