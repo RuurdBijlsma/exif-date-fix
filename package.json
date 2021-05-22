@@ -1,0 +1,20 @@
+{
+  "name": "file-renamer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js --rename ./fixbyfilename"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^7.2.0",
+    "get-exif": "^1.0.3",
+    "modify-exif": "^0.0.1",
+    "piexifjs": "*",
+    "prompt": "^1.1.0"
+  }
+}
