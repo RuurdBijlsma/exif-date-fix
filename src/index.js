@@ -56,16 +56,15 @@ export default async function fix() {
         try {
             let fullFile = path.join(dir, file);
 
-            const year = d.getFullYear(),
-                month = (d.getMonth() + 1).toString().padStart(2, '0'),
-                day = d.getDate().toString().padStart(2, '0'),
-                hour = d.getHours().toString().padStart(2, '0'),
-                minute = d.getMinutes().toString().padStart(2, '0'),
-                second = d.getSeconds().toString().padStart(2, '0');
-            const dateString = `${year}:${month}:${day} ${hour}:${minute}:${second}`;
-
-            let type = getFileType(fullFile);
-            if (type === 'image' && !file.endsWith('gif')) {
+            let ext = path.extname(file.toLowerCase());
+            if (ext.includes('tif') || ext.includes('jpg') || ext.includes('jpeg')) {
+                const year = d.getFullYear(),
+                    month = (d.getMonth() + 1).toString().padStart(2, '0'),
+                    day = d.getDate().toString().padStart(2, '0'),
+                    hour = d.getHours().toString().padStart(2, '0'),
+                    minute = d.getMinutes().toString().padStart(2, '0'),
+                    second = d.getSeconds().toString().padStart(2, '0');
+                const dateString = `${year}:${month}:${day} ${hour}:${minute}:${second}`;
                 let fileBuffer = await fs.promises.readFile(fullFile);
                 let newBuffer = modifyExif(fileBuffer, data => {
                     // 36867: tag ID of `DateTimeOriginal` tag
