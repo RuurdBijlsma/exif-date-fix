@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "bin": {
+    "fix-exif": "src/cli.js"
+  },
   "scripts": {
-    "start": "node index.js --rename ./fixbyfilename"
+    "start": "node src/index.js --rename ./fixbyfilename"
   },
   "type": "module",
   "keywords": [],

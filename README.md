@@ -1,7 +1,7 @@
 # Image EXIF Fixer CLI
 
 Fix images where the date field is missing or incorrect in the EXIF data, but present in the filename (
-ie. `IMG_20210401_193452.jpg`).
+i.e. `IMG_20210401_193452.jpg`).
 
 ## Usage
 
