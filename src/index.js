@@ -4,44 +4,36 @@ import modifyExif from 'modify-exif'
 import mime from "mime-types";
 import {utimes} from 'utimes';
 
+export function filenameToDate(filename) {
+    let match = filename.match(/(^|[^0-9])(\d\d\d\d)-(\d\d)-(\d\d)[^0-9]/);
+    if (match) {
+        // format is 2015-01-25
+        let [, , year, month, day] = match;
+        return new Date(`${year}-${month}-${day} 15:00:00`);
+    }
 
-export default async function fix() {
+    match = filename.match(/(^|[^0-9])([21]\d\d\d)(\d\d)(\d\d)[^0-9](\d\d)(\d\d)(\d\d)/);
+    if (match) {
+        // format is 20150125_193531 possibly with ms after that
+        let [, , year, month, day, hour, minute, second] = match;
+        return new Date(`${year}-${month}-${day} ${hour}:${minute}:${second}`);
+    }
+
+    match = filename.match(/(^|[^0-9])([21]\d\d\d)(\d\d)(\d\d)[^0-9]/);
+    if (match) {
+        // format is 20150125
+        let [, , year, month, day] = match;
+        return new Date(`${year}-${month}-${day} 15:00:00`);
+    }
+
+    return null;
+}
+
+export async function fix() {
     let args = process.argv;
     let dir = args[args.length - 1];
     let files = await fs.promises.readdir(dir);
-    let dates = [];
-
-    for (let file of files) {
-        let match = file.match(/(^|[^0-9])(\d\d\d\d)-(\d\d)-(\d\d)[^0-9]/);
-        if (match) {
-            // format is 2015-01-25
-            let [_, __, year, month, day] = match;
-            let date = new Date(`${year}-${month}-${day} 15:00:00`);
-            dates.push(date);
-            continue;
-        }
-
-        match = file.match(/(^|[^0-9])([21]\d\d\d)(\d\d)(\d\d)[^0-9](\d\d)(\d\d)(\d\d)/);
-        if (match) {
-            // format is 20150125_193531 possibly with ms after that
-            let [_, __, year, month, day, hour, minute, second] = match;
-            let date = new Date(`${year}-${month}-${day} ${hour}:${minute}:${second}`);
-            dates.push(date);
-            continue
-        }
-
-        match = file.match(/(^|[^0-9])([21]\d\d\d)(\d\d)(\d\d)[^0-9]/);
-        if (match) {
-            // format is 20150125
-            let [_, __, year, month, day] = match;
-            let date = new Date(`${year}-${month}-${day} 15:00:00`);
-            dates.push(date);
-            continue;
-        }
-
-        dates.push(null);
-        console.log("Can't parse", file);
-    }
+    let dates = files.map(filenameToDate);
 
     let fixedN = 0;
     let totalN = files.length;
