@@ -1,2 +1,4 @@
 #!/usr/bin/env node
-import cli from "./index.js";
+import {fix} from "./index.js";
+
+fix().then();

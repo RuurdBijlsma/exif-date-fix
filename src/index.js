@@ -1,7 +1,6 @@
 import fs from "fs";
 import path from "path";
 import modifyExif from 'modify-exif'
-import mime from "mime-types";
 import {utimes} from 'utimes';
 
 export function filenameToDate(filename) {
@@ -77,12 +76,3 @@ export async function fix() {
 
     console.log(`Fixed [${fixedN} / ${totalN}] files`)
 }
-
-
-function getFileType(filePath) {
-    let fileExt = path.extname(filePath);
-    let mimeType = mime.lookup(fileExt);
-    return mimeType === false ? mimeType : mimeType.split('/')[0];
-}
-
-fix().then();
