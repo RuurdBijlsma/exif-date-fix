@@ -8,21 +8,21 @@ export function filenameToDate(filename) {
     if (match) {
         // format is 2015-01-25
         let [, , year, month, day] = match;
-        return new Date(`${year}-${month}-${day} 15:00:00`);
+        return `${year}-${month}-${day} 15:00:00`;
     }
 
     match = filename.match(/(^|[^0-9])([21]\d\d\d)(\d\d)(\d\d)[^0-9](\d\d)(\d\d)(\d\d)/);
     if (match) {
         // format is 20150125_193531 possibly with ms after that
         let [, , year, month, day, hour, minute, second] = match;
-        return new Date(`${year}-${month}-${day} ${hour}:${minute}:${second}`);
+        return `${year}-${month}-${day} ${hour}:${minute}:${second}`;
     }
 
     match = filename.match(/(^|[^0-9])([21]\d\d\d)(\d\d)(\d\d)[^0-9]/);
     if (match) {
         // format is 20150125
         let [, , year, month, day] = match;
-        return new Date(`${year}-${month}-${day} 15:00:00`);
+        return `${year}-${month}-${day} 15:00:00`;
     }
 
     return null;
@@ -39,7 +39,7 @@ export async function fix() {
 
     for (let i = 0; i < files.length; i++) {
         const file = files[i];
-        const d = dates[i];
+        const d = new Date(dates[i]);
         if (d === null) {
             console.log("Can't fix exif of", file, '[unknown date]');
             continue;
